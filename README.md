@@ -3,30 +3,14 @@
 Clojure doesn't allow metadata on primitives. This tiny library provides a
 simple way to box a primitive and add metadata to it.
 
-## Usage
+# Summary
 
-Here is how you use it.
+This library provides a simple* way to box a primitive that is also metadata friendly.
 
-```clj
-(require '[metabox.core :refer (box val)])
-(def critical-density (box 0.692 {:uncertainty 0.01}))
-(val critical-density) ; 0.692
-(meta critical-density) ; {:uncertainty 0.01}
-```
-
-(Note that I'm using the var, `critical-density`, as a convenience. I want to
-attach the metadata to the value, not to the var.)
-
-This library provides a simple (perhaps the simplest*) way to box a primitive
-that is also metadata friendly. Clojure metadata works with classes descending
-from `clojure.lang.IObj`. So, this code provides:
-
-  1. a custom Java class called `MetaBox` that implements `clojure.lang.IObj`.
-  2. two Clojure functions to work with metaboxes: `metabox/box` and
-     `metabox/val`.
-
-You can also use the usual Clojure metadata functions, such as `meta` and
-`with-meta`.
+  * To box a value, use `metabox/box`.
+  * To get the value, use `deref` or `@`.
+  * To get the metadata, use `meta`.
+  * To attach new metadata, use `with-meta`.
 
 \* This is a matter of perspective. If you find something simpler for you, let
 me know, or share on this Stack Overflow question [Simplest
@@ -34,9 +18,31 @@ possible Clojure object that can accept a primitive and metadata?][1]
 
 [1]: http://stackoverflow.com/questions/20724219/simplest-possible-clojure-object-that-can-accept-a-primitive-and-metadata
 
+## Example
+
+Now for an example that is universally applicable:
+
+```clj
+(require '[metabox.core :refer (box)])
+(def critical-density (box 0.692 {:uncertainty 0.01}))
+@critical-density ; 0.692
+(meta critical-density) ; {:uncertainty 0.01}
+```
+
+(Note that I'm using the var, `critical-density`, as a convenience. I want to
+attach the metadata to the value, not to the var.)
+
+## Implementation
+
+Clojure metadata works with classes descending from `clojure.lang.IObj`. So,
+this code provides a `MetaBox` class that implements `clojure.lang.IObj`.
+
+`MetaBox` also implements `clojure.lang.IDeref` because that provides `deref`, a
+convenient way to provide a way to get the value out of the box.
+
 ## Alternatives
 
-There are alternatives. For example, you might use a vector:
+There are other ways to achieve boxing; for example, you might use a vector:
 
 ```clj
 (def speed-of-light (with-meta [299792458] {:units "m/s"}))
@@ -50,6 +56,10 @@ There are at least two drawbacks with the vector approach:
     work. If you look at how vectors are implemented in Java, you will see
     that `PersistentVector` implements `clojure.lang.IObj` but also adds other
     functionality not needed for boxing.
+
+No matter how you do it, Howard, I hope that [boxing has been good for you][1].
+
+[1]: https://www.youtube.com/watch?v=DlT4aFDZ-AM
 
 ## Motivation
 

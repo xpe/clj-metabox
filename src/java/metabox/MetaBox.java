@@ -1,9 +1,10 @@
 package metabox;
 
+import clojure.lang.IDeref;
 import clojure.lang.IObj;
 import clojure.lang.IPersistentMap;
 
-public class MetaBox implements IObj {
+public class MetaBox implements IDeref, IObj {
 
   final Object _val;
   final IPersistentMap _meta;
@@ -23,7 +24,7 @@ public class MetaBox implements IObj {
     _meta = meta;
   }
 
-  final public Object val() {
+  final public Object deref() {
     return _val;
   }
 
