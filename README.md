@@ -65,11 +65,11 @@ Here is how this works with `metabox`:
 (meta many-bytes) ; {:charset "UTF-8"}
 ```
 
-I consider some alternatives, including variations of the one mentioned above.
-I also looked at [ArrayUtils/toObject][AU] from [Apache Commons lang][ACL].
-But I don't want to [copy the byte array][copy-byte-array]; I simply want to
-box it. You could do something similarly unsatisying with Clojure's
-[make-array] function.
+I considered some alternatives, such as wrapping with Clojure maps and
+vectors, as mentiond above. I also looked at [ArrayUtils/toObject][AU] from
+[Apache Commons lang][ACL]. But I don't want to [copy the byte array][copy-
+byte-array]; I simply want to box it. You could do something similarly
+unsatisying with Clojure's [make-array] function.
 
 [AU]: https://commons.apache.org/proper/commons-lang/javadocs/api-3.1/org/apache/commons/lang3/ArrayUtils.html#toObject(byte[])
 [ACL]: http://commons.apache.org/proper/commons-lang/
