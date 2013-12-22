@@ -69,9 +69,9 @@ doesn't allow that because arrays are primitives.
 Here is how this works with `metabox`:
 
 ```clj
-(require '[metabox.core :refer (box val)])
+(require '[metabox.core :refer (box)])
 (def many-bytes (box (byte-array 100) {:charset "UTF-8"}))
-(val many-bytes) ; #<byte[] [B@4b4340e2>
+(deref many-bytes) ; #<byte[] [B@4b4340e2>
 (meta many-bytes) ; {:charset "UTF-8"}
 ```
 
