@@ -1,4 +1,4 @@
-(defproject metabox "0.1.0-SNAPSHOT"
+(defproject metabox "0.1.0"
   :description "Box a primitive with metadata in Clojure."
   :url "https://github.com/bluemont/clj-metabox"
   :license {:name "Eclipse Public License"
