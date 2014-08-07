@@ -13,10 +13,10 @@ This library provides a simple* way to box a primitive that is also metadata fri
   * To attach new metadata, use `with-meta`.
 
 \* This is a matter of perspective. If you find something simpler for you, let
-me know, or share on this Stack Overflow question [Simplest
-possible Clojure object that can accept a primitive and metadata?][1]
+me know, or share on this Stack Overflow question: ["Simplest
+possible Clojure object that can accept a primitive and metadata?"][stack-o].
 
-[1]: http://stackoverflow.com/questions/20724219/simplest-possible-clojure-object-that-can-accept-a-primitive-and-metadata
+[stack-o]: http://stackoverflow.com/questions/20724219/simplest-possible-clojure-object-that-can-accept-a-primitive-and-metadata
 
 ## Example
 
@@ -57,9 +57,9 @@ There are at least two drawbacks with the vector approach:
     that `PersistentVector` implements `clojure.lang.IObj` but also adds other
     functionality not needed for boxing.
 
-No matter how you do it, Howard, I hope that [boxing has been good for you][1].
+No matter how you do it, Howard, I hope that [boxing has been good for you][boxing].
 
-[1]: https://www.youtube.com/watch?v=DlT4aFDZ-AM
+[boxing]: https://www.youtube.com/watch?v=DlT4aFDZ-AM
 
 ## Motivation
 
